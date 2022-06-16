@@ -89,5 +89,5 @@ mkdir "11 animes"
 
 
 }else{
-    
+  exit  
 }
