@@ -20,8 +20,8 @@ If($confirm -eq "I"){
 }elseif($confirm -eq "U"){
     For($i=0;$i -lt $arr.length ;$i++) 
     { 
-        Write-Output "node-modules Update : (DISABLE) $($arr[$i])" 
-        start-process powershell.exe -argument "-nologo -noprofile -command cd ./'$($arr[$i])' ; echo DISABLE ;exit"
+        Write-Output "node-modules Update : $($arr[$i])" 
+        start-process powershell.exe -argument "-nologo -noprofile -command cd ./'$($arr[$i])' ; npm update ;exit"
     }
 }else{
     Write-Output "good bye"
