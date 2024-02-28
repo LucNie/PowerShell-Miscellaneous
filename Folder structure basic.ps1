@@ -4,6 +4,13 @@ $confirm = Read-Host 'Crée un squelette type GOAT structure ? [C]Complette [L]L
 If ($confirm -eq "C") {
 
     mkdir "000_archive"
+    Set-Location "./000_archive"
+    mkdir "000_private"
+    mkdir "001_public"
+    mkdir "002_important"
+    mkdir "003_backup"
+    Set-Location "../"
+
     mkdir "00_cache"
     mkdir "01_Programmes"
     mkdir "02_Jeux"
@@ -15,6 +22,10 @@ If ($confirm -eq "C") {
     mkdir "32_Visual_studio"
     mkdir "33_Visual_studio_code"
     mkdir "34_Git"
+    mkdir "35_VM"
+    mkdir "36_Docker"
+    mkdir "37_Autre"
+
     Set-Location "../"
 
     mkdir "04_Video"
@@ -45,23 +56,25 @@ If ($confirm -eq "C") {
     Set-Location "./06_Music"
     mkdir "60_Cache"
     mkdir "61_playlist"
+    mkdir "62_Raw"
+    mkdir "63_Editer"
+    
     Set-Location "../"
     mkdir "07_Ecole"
     mkdir "08_travail"
-
     mkdir "09_projet"
     Set-Location "./09_projet"
     mkdir "90_Cache"
     Set-Location "../"
 
     mkdir "10_documents"
+    Set-Location "./10_documents"
+    mkdir "100_private"
+    mkdir "101_public"
+    mkdir "102_important"
 
     mkdir "11_animes"
-    Set-Location "./11_animes"
-    mkdir "110_Cache"
-    mkdir "111_Raw"
-    mkdir "112_non fini"
-    mkdir "113_Fini"
+
     Set-Location "../"
 
 
