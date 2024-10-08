@@ -1,11 +1,14 @@
 # PowerShell-Miscellaneous
 
-## outiles Npm
-Place the script at the same level as your node js project parents.
-The script will simply do an `npm install` to all folders or remove "node-modules" as desired.
+## ~~outils Npm~~
+~~Placez le script au même niveau que le projet parent de votre node js.~~  
+~~Le script fera simplement un `npm install` dans tous les dossiers ou supprimera "node-modules" selon vos besoins.~~
 
-### UPDATE
-I deleted some scripts that had become obsolete, mostly due to my previous lack of experience. New ones will be arriving soon
+### MISE À JOUR
+J'ai supprimé certains scripts qui étaient devenus obsolètes, principalement en raison de mon ancien manque d'expérience. De nouveaux arriveront bientôt. La langue officielle est devenue le français.
 
-## Kill static process
-kill windows 7/8/10/11 processes by name and by how long they are running.
+## Tuer les processus statiques
+Tuez les processus Windows 7/8/10/11 par nom et par durée d'exécution.
+
+## Structure de dossier basic.ps1
+Créez un agencement normalisé de dossier dans l'emplacement d'exécution, avec plusieurs choix possibles de structure disponibles.
