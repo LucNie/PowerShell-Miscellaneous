@@ -1,120 +1,75 @@
-$confirm = "N"
-$confirm = Read-Host 'Crée un squelette type GOAT structure ? [C]Complette [L]Leger [T]Travail [N]no '
+# Fonction pour créer des dossiers si non existants
+function Create-Folders {
+    param ([string]$base, [string[]]$folders)
 
-If ($confirm -eq "C") {
-
-    mkdir "000_archive"
-    Set-Location "./000_archive"
-    mkdir "000_private"
-    mkdir "001_public"
-    mkdir "002_important"
-    mkdir "003_backup"
-    Set-Location "../"
-
-    mkdir "00_cache"
-    mkdir "01_Programmes"
-    mkdir "02_Jeux"
-    mkdir "03_Programmation"
-
-    Set-Location "./03_Programmation"
-    mkdir "30_Cache"
-    mkdir "31_Unity"
-    mkdir "32_Visual_studio"
-    mkdir "33_Visual_studio_code"
-    mkdir "34_Git"
-    mkdir "35_VM"
-    mkdir "36_Docker"
-    mkdir "37_Autre"
-
-    Set-Location "../"
-
-    mkdir "04_Video"
-    Set-Location "./04_Video"
-    mkdir "40_Cache"
-    mkdir "41_Raw"
-    mkdir "42_Editer"
-    mkdir "43_Fond vert"
-    mkdir "44_Sond"
-    mkdir "45_Music"
-    mkdir "46_Fini"
-
-    Set-Location "../"
-
-
-    mkdir "05_Images"
-    Set-Location "./05_Images"
-    mkdir "50_Cache"
-    mkdir "51_Raw"
-    mkdir "52_Editer"
-    mkdir "53_Fond vert"
-    mkdir "54_Sond"
-    mkdir "55_Music"
-    mkdir "56_Fini"
-    Set-Location "../"
-
-    mkdir "06_Music"
-    Set-Location "./06_Music"
-    mkdir "60_Cache"
-    mkdir "61_playlist"
-    mkdir "62_Raw"
-    mkdir "63_Editer"
-    
-    Set-Location "../"
-    mkdir "07_Ecole"
-    mkdir "08_travail"
-    mkdir "09_projet"
-    Set-Location "./09_projet"
-    mkdir "90_Cache"
-    Set-Location "../"
-
-    mkdir "10_documents"
-    Set-Location "./10_documents"
-    mkdir "100_private"
-    mkdir "101_public"
-    mkdir "102_important"
-
-    mkdir "11_animes"
-
-    Set-Location "../"
-
-
+    foreach ($folder in $folders) {
+        $fullPath = Join-Path $base $folder
+        if (-not (Test-Path $fullPath)) {
+            mkdir $fullPath
+        }
+    }
 }
+
+# Demande à l'utilisateur quel type de structure il veut créer
+$confirm = Read-Host 'Créer une structure de dossier type GOAT ? [C]Complète [L]Légère [T]Travail [N]Non '
+
+# Structure Complète
+if ($confirm -eq "C") {
+    # Créer les dossiers principaux
+    $basePath = (Get-Location).Path
+    $folders = @("000_archive", "00_cache", "01_Programmes", "02_Jeux", "03_Programmation", "04_Video", "05_Images", "06_Music", "07_Ecole", "08_travail", "09_projet", "10_documents", "11_animes")
+    Create-Folders $basePath $folders
+
+    # Dossiers spécifiques à 000_archive
+    Set-Location "000_archive"
+    Create-Folders (Get-Location).Path @("000_private", "001_public", "002_important", "003_backup")
+    Set-Location $basePath
+
+    # Dossiers pour Programmation
+    Set-Location "03_Programmation"
+    Create-Folders (Get-Location).Path @("30_Cache", "31_Unity", "32_Visual_studio", "33_Visual_studio_code", "34_Git", "35_VM", "36_Docker", "37_Autre")
+    Set-Location $basePath
+
+    # Dossiers pour Video
+    Set-Location "04_Video"
+    Create-Folders (Get-Location).Path @("40_Cache", "41_Raw", "42_Editer", "43_Fond vert", "44_Sond", "45_Music", "46_Fini")
+    Set-Location $basePath
+
+    # Dossiers pour Images
+    Set-Location "05_Images"
+    Create-Folders (Get-Location).Path @("50_Cache", "51_Raw", "52_Editer", "53_Fond vert", "54_Sond", "55_Music", "56_Fini")
+    Set-Location $basePath
+
+    # Dossiers pour Music
+    Set-Location "06_Music"
+    Create-Folders (Get-Location).Path @("60_Cache", "61_playlist", "62_Raw", "63_Editer")
+    Set-Location $basePath
+
+    # Dossiers pour Documents
+    Set-Location "10_documents"
+    Create-Folders (Get-Location).Path @("100_private", "101_public", "102_important")
+    Set-Location $basePath
+}
+
+# Structure Légère
 elseif ($confirm -eq "L") {
-   
-    mkdir "000_archive"
-    mkdir "00_cache"
-    mkdir "01_Programmes"
-    mkdir "02_Jeux"
-    mkdir "03_Programmation"
-    mkdir "04_Video"
-    mkdir "05_Images"
-    mkdir "06_Music"
-    mkdir "07_Ecole"
-    mkdir "08_travail"
-    mkdir "09_projet"
-    mkdir "10_documents"
-    mkdir "11_animes"
+    $folders = @("000_archive", "00_cache", "01_Programmes", "02_Jeux", "03_Programmation", "04_Video", "05_Images", "06_Music", "07_Ecole", "08_travail", "09_projet", "10_documents", "11_animes")
+    Create-Folders (Get-Location).Path $folders
 }
+
+# Structure Travail
 elseif ($confirm -eq "T") {
-    
-    mkdir "000_archive"
-    mkdir "00_cache"
-    mkdir "01_Programmes"
-    mkdir "03_Programmation"
+    $folders = @("000_archive", "00_cache", "01_Programmes", "03_Programmation", "04_Video", "05_Images", "09_projet", "10_documents")
+    Create-Folders (Get-Location).Path $folders
 
-    Set-Location "./03_Programmation"
-    mkdir "30_Cache"
-    mkdir "31_Unity"
-    mkdir "32_Visual_studio"
-    mkdir "33_Visual_studio_code"
-    mkdir "34_Git"
-    Set-Location "../"
-
-    mkdir "04_Video"
-    mkdir "05_Images"
-    mkdir "09_projet"
-    mkdir "10_documents"
+    # Dossiers spécifiques à Programmation
+    Set-Location "03_Programmation"
+    Create-Folders (Get-Location).Path @("30_Cache", "31_Unity", "32_Visual_studio", "33_Visual_studio_code", "34_Git")
+    Set-Location $basePath
 }
+
+# Si l'utilisateur choisit 'N' ou autre chose, on quitte
 else {
+    Write-Host "Aucune action effectuée. Sortie du script."
     exit
 }
